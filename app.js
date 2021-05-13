@@ -8,9 +8,11 @@ const https = require('https');
 const ejs = require('ejs');
 const _ = require('lodash');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 
 const date = require(__dirname + "/date.js");
+
 
 
 app.set("view engine", "ejs");
@@ -22,7 +24,10 @@ app.use(express.static("public"));
 
 //CODE......................................................
 
-mongoose.connect("mongodb://localhost:27017/todoListDB", {
+const User_password=process.env.USER_PASSWORD;
+const connectionUrl="mongodb+srv://admin-pulkit:"+User_password+"@cluster0.5lgqq.mongodb.net/todoListDB";
+
+mongoose.connect(connectionUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
